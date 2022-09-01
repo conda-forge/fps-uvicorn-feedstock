@@ -1,5 +1,5 @@
 {% set name = "fps-uvicorn" %}
-{% set version = "0.0.3" %}
+{% set version = "0.0.19" %}
 
 package:
   name: {{ name|lower }}
