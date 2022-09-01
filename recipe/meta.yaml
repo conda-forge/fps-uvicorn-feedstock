@@ -6,13 +6,13 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/jupyter-server/fps/archive/{{ name }}-{{ version }}.tar.gz
-  sha256: 55f9541fe478d0022ceba8a6920c32733a4dfde8c7f34fc10f92cd0791b7fa0e
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fps_uvicorn-0.0.19.tar.gz
+  sha256: 249556e6920d3a56e11bef42adbd64944f210ddfb8b0208ca3caadc9764f8b0a
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install ./plugins/uvicorn/ --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
     - fps-uvicorn = fps_uvicorn.cli:app
 
@@ -24,7 +24,6 @@ requirements:
     - python >=3.7
     - fps
     - uvicorn
-    - typer
 
 test:
   imports:
@@ -43,3 +42,4 @@ about:
 extra:
   recipe-maintainers:
     - adriendelsalle
+    - davidbrochart
