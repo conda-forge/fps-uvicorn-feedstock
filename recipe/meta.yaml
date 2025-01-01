@@ -6,26 +6,28 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/fps_uvicorn-0.0.19.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/fps_uvicorn-0.0.19.tar.gz
   sha256: 249556e6920d3a56e11bef42adbd64944f210ddfb8b0208ca3caadc9764f8b0a
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
     - fps-uvicorn = fps_uvicorn.cli:app
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - fps
     - uvicorn
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - fps_uvicorn
 
